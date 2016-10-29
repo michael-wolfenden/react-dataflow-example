@@ -1,15 +1,17 @@
 jest.disableAutomock();
-const mockRedditService = {
-  getDefaultSubreddits: jest.fn()
-};
-const mockStore = {
-  setAllTopics: jest.fn()
-};
-jest.setMock('../../services/reddit', mockRedditService);
-jest.setMock('./store', mockStore);
-const uut = require('./actions');
+jest.clearAllMocks();
 
 describe('store/topics/actions', () => {
+  const mockRedditService = {
+    getDefaultSubreddits: jest.fn()
+  };
+  const mockStore = {
+    setAllTopics: jest.fn()
+  };
+  jest.setMock('../../services/reddit', mockRedditService);
+  jest.setMock('./store', mockStore);
+  const uut = require('./actions');
+
   describe('fetchTopics', () => {
     it('gets default subreddits and saves in the store', async() => {
       expect(mockRedditService.getDefaultSubreddits).not.toHaveBeenCalled();
@@ -25,6 +27,16 @@ describe('store/topics/actions', () => {
     });
 
     it('prints errors to console', async() => {
+      const origConsole = console.error;
+      console.error = jest.fn();
+      mockRedditService.getDefaultSubreddits.mockImplementation(() => {
+        throw Error('error!');
+      });
+
+      await uut.fetchTopics();
+
+      expect(console.error).toHaveBeenCalledWith('error!');
+      console.error = origConsole;
     });
   });
 });
