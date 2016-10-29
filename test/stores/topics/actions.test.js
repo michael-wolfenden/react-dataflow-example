@@ -1,5 +1,5 @@
-import * as testUtils from './../../testutils';
-import * as uut from './../../../src/stores/topics/actions';
+const testUtils = require('app-root-path').require('test/testutils');
+const uut = testUtils.requireAbsolute('src/stores/topics/actions');
 
 describe('store/topics/actions', () => {
   describe('fetchTopics', () => {
