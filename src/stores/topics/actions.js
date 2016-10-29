@@ -1,3 +1,3 @@
-export function fetchTopics() {
+export async function fetchTopics() {
 
 }

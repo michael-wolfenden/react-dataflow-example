@@ -31,7 +31,6 @@ module.exports = function(wallaby) {
     },
 
     setup: function(w) {
-      require('babel-register');
       require('babel-polyfill');
     }
   };

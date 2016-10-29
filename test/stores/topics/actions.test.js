@@ -1,6 +1,5 @@
 import * as testUtils from './../../testutils';
-//import * as uut from './../../../src/stores/topics/actions';
-const uut = testUtils.requireAbsolute('src/stores/topics/actions');
+import * as uut from './../../../src/stores/topics/actions';
 
 describe('store/topics/actions', () => {
   describe('fetchTopics', () => {
