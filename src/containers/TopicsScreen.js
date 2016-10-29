@@ -13,9 +13,6 @@ class TopicsScreen extends Component {
     autobind(this);
   }
 
-  componentDidMount() {
-  }
-
   render() {
     return this.renderLoading();
   }
