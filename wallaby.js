@@ -24,8 +24,6 @@ module.exports = function(wallaby) {
     },
 
     setup: function(w) {
-      //require('babel-polyfill');
-      //require('app-root-path').setPath(w.projectCacheDir);
     }
   };
 };
