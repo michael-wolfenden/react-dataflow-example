@@ -7,6 +7,8 @@ import autobind from 'react-autobind';
 import {connect} from 'remx/react';
 import './TopicsScreen.css';
 
+import ListView from '../components/ListView';
+
 import * as topicsActions from '../stores/topics/actions';
 import {selectors as topicsSelectors} from '../stores/topics/store';
 
@@ -36,7 +38,20 @@ class TopicsScreen extends Component {
 
   renderTopics() {
     return (
-      <p>{topicsSelectors.getAllTopics().length}</p>
+      <div className="TopicsScreen">
+        <h3>Choose 3 topics of interest</h3>
+        <ListView
+          rowsIdArray={[1, 2, 3]}
+          rowsById={{1: 'a', 2: 'b', 3: 'c'}}
+          renderRow={this.renderRow}
+        />
+      </div>
+    );
+  }
+
+  renderRow(topicUrl, topic) {
+    return (
+      <p>{topic}</p>
     );
   }
 }
