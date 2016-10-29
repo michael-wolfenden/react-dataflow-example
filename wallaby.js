@@ -1,6 +1,12 @@
 /*eslint-disable*/
 'use strict';
-const babelOptions = JSON.parse(require('fs').readFileSync(`${__dirname}/.babelrc`));
+const babelOptions = {
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
+  ]
+};
 process.env.wallabyScriptDir = __dirname;
 module.exports = function(wallaby) {
   return {
