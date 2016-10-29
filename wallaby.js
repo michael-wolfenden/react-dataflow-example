@@ -17,10 +17,13 @@ module.exports = function(wallaby) {
     testFramework: 'jest',
 
     files: [
-      'src/**/*.js'
+      'src/**/*.js',
+      'test/**/*.js',
+      '!test/**/*.test.js'
     ],
 
     tests: [
+      '!test/**/*.js',
       'test/**/*.test.js'
     ],
 
