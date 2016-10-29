@@ -1,6 +1,7 @@
 import * as redditService from '../../services/reddit';
+import * as store from './store';
 
 export async function fetchTopics() {
-  const subredditUrls = await redditService.getDefaultSubreddits();
-  console.log(subredditUrls);
+  const subreddits = await redditService.getDefaultSubreddits();
+  store.setAllTopics(subreddits);
 }

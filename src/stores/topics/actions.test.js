@@ -1,44 +1,30 @@
 jest.disableAutomock();
-const redditService = {
+const mockRedditService = {
   getDefaultSubreddits: jest.fn()
 };
-jest.setMock('../../services/reddit', redditService);
+const mockStore = {
+  setAllTopics: jest.fn()
+};
+jest.setMock('../../services/reddit', mockRedditService);
+jest.setMock('./store', mockStore);
 const uut = require('./actions');
 
 describe('store/topics/actions', () => {
   describe('fetchTopics', () => {
     it('gets default subreddits and saves in the store', async() => {
-      expect(redditService.getDefaultSubreddits).not.toHaveBeenCalled();
+      expect(mockRedditService.getDefaultSubreddits).not.toHaveBeenCalled();
+      expect(mockStore.setAllTopics).not.toHaveBeenCalled();
+
+      const result = [];
+      mockRedditService.getDefaultSubreddits.mockReturnValue(result);
       await uut.fetchTopics();
-      expect(redditService.getDefaultSubreddits).toHaveBeenCalledTimes(1);
+
+      expect(mockRedditService.getDefaultSubreddits).toHaveBeenCalledTimes(1);
+      expect(mockStore.setAllTopics).toHaveBeenCalledTimes(1);
+      expect(mockStore.setAllTopics).toHaveBeenCalledWith(result);
+    });
+
+    it('prints errors to console', async() => {
     });
   });
 });
-
-//import * as TestUtils from 'a-wix-react-native-commons/TestUtils';
-//
-//describe('stores/session/actions', () => {
-//  const mockSessionStore = {};
-//  mockSessionStore.store = TestUtils.spy('updateSession');
-//  const mockPostsActions = TestUtils.spy('fetchPosts');
-//
-//  const uut = TestUtils.proxyquire('src/stores/session/actions', {
-//    './store': mockSessionStore,
-//    '../posts/actions': mockPostsActions
-//  });
-//
-//  describe('updateSession', () => {
-//    it('saves session to store and calls fetchPosts', TestUtils.asyncSpec(() => {
-//      TestUtils.expectNoMethodsToHaveBeenCalled(mockSessionStore);
-//      TestUtils.expectNoMethodsToHaveBeenCalled(mockPostsActions);
-//
-//      const newSession = {};
-//      uut.updateSession(newSession);
-//
-//      expect(mockSessionStore.store.updateSession).toHaveBeenCalledTimes(1);
-//      expect(mockSessionStore.store.updateSession).toHaveBeenCalledWith(newSession);
-//      expect(mockPostsActions.fetchPosts).toHaveBeenCalledTimes(1);
-//    }));
-//
-//  });
-//});
