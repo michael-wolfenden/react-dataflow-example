@@ -13,14 +13,14 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "globals": {
-    "jest": true
-  },
   "plugins": [
     "react",
     "react-native",
     "babel"
   ],
+  "globals": {
+    "jest": true
+  },
   "rules": {
     /*
      *                          possible errors
