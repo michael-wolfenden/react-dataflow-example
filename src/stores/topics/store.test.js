@@ -1,5 +1,8 @@
-jest.disableAutomock();
-jest.clearAllMocks();
+beforeEach(() => {
+  jest.disableAutomock();
+  jest.clearAllMocks();
+  jest.resetModules();
+});
 
 describe('stores/topics/store', () => {
   let uut;
@@ -18,8 +21,14 @@ describe('stores/topics/store', () => {
       expect(uut.selectors.getAllTopics()).toEqual(['a', 'b']);
     });
 
-    it('getTopicsByUrl', () => {
-
+    it('sets loading false when setAllTopics', () => {
+      expect(uut.selectors.isLoading()).toEqual(true);
+      uut.store.setAllTopics(['a', 'b']);
+      expect(uut.selectors.isLoading()).toEqual(false);
     });
+  });
+
+  it('isLoading flag', () => {
+    expect(uut.selectors.isLoading()).toEqual(true);
   });
 });

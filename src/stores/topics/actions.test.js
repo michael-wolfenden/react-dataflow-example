@@ -1,5 +1,8 @@
-jest.disableAutomock();
-jest.clearAllMocks();
+beforeEach(() => {
+  jest.disableAutomock();
+  jest.clearAllMocks();
+  jest.resetModules();
+});
 
 describe('store/topics/actions', () => {
   let uut, store, mockRedditService;
