@@ -4,7 +4,8 @@ const babelOptions = JSON.parse(require('fs').readFileSync(`${__dirname}/.babelr
 module.exports = function(wallaby) {
   return {
     env: {
-      type: 'node'
+      type: 'node',
+      runner: 'node'
     },
 
     testFramework: 'jest',
