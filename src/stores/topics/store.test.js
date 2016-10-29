@@ -2,7 +2,12 @@ jest.disableAutomock();
 jest.clearAllMocks();
 
 describe('stores/topics/store', () => {
-  const uut = require('./store');
+  let uut;
+
+  beforeEach(() => {
+    uut = require('./store');
+  });
+
   describe('holds all topics', () => {
     it('starts with empty list', () => {
       expect(uut.selectors.getAllTopics()).toEqual([]);
