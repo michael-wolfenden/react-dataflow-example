@@ -12,12 +12,11 @@ module.exports = function(wallaby) {
 
     files: [
       'src/**/*.js',
-      'test/**/*.js',
-      '!test/**/*.test.js'
+      '!src/**/*.test.js'
     ],
 
     tests: [
-      'test/**/*.test.js'
+      'src/**/*.test.js'
     ],
 
     compilers: {
@@ -25,8 +24,6 @@ module.exports = function(wallaby) {
     },
 
     setup: function(w) {
-      require('babel-polyfill');
-      require('app-root-path').setPath(w.projectCacheDir);
     }
   };
 };
