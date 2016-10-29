@@ -1,16 +1,18 @@
-const state = {
+import * as remx from 'remx';
+
+const state = remx.state({
   loading: true,
   allTopics: []
-};
+});
 
-export const store = {
+export const store = remx.setters({
   setAllTopics(topics) {
     state.allTopics = topics;
     state.loading = false;
   }
-};
+});
 
-export const selectors = {
+export const selectors = remx.getters({
   isLoading() {
     return state.loading;
   },
@@ -18,5 +20,4 @@ export const selectors = {
   getAllTopics() {
     return state.allTopics;
   }
-};
-
+});

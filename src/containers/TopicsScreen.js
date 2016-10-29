@@ -7,19 +7,36 @@ import autobind from 'react-autobind';
 import {connect} from 'remx/react';
 import './TopicsScreen.css';
 
+import * as topicsActions from '../stores/topics/actions';
+import {selectors as topicsSelectors} from '../stores/topics/store';
+
 class TopicsScreen extends Component {
   constructor(props) {
     super(props);
     autobind(this);
   }
 
+  componentDidMount() {
+    topicsActions.fetchTopics();
+  }
+
   render() {
-    return this.renderLoading();
+    if (topicsSelectors.isLoading()) {
+      return this.renderLoading();
+    } else {
+      return this.renderTopics();
+    }
   }
 
   renderLoading() {
     return (
       <p>Loading...</p>
+    );
+  }
+
+  renderTopics() {
+    return (
+      <p>{topicsSelectors.getAllTopics().length}</p>
     );
   }
 }
