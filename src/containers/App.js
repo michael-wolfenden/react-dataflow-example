@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'remx/react';
 import './App.css';
 
-import TopicsScreen from './containers/TopicsScreen';
+import TopicsScreen from './TopicsScreen';
 
 class App extends Component {
   render() {
