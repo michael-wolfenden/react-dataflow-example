@@ -1,6 +1,9 @@
 // services are state-less
 // they act as utility facades that abstract the details for complex operations
-// normally, our interface to any sort of server API will be as a service
+// normally, our interface to any sort of server API will be as a service.
+// More importantly, these are the boundary objects, implementing the interface for all external dependencies.
+// These can include http requests, db (both local and remote), and even static UI operations.
+// These all should be PLUGINS to the application.
 
 import _ from 'lodash';
 

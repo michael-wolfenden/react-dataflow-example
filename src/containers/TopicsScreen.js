@@ -1,16 +1,17 @@
-// containers are "smart" react components that are aware of redux
-// they are connected to the redux store and listen on part of the app state
-// they use mapStateToProps to specify which parts and use selectors to read them
-// avoid having view logic & local component state in them, use "dumb" components instead
+// containers are "smart" react components that are derived from the state,
+// they observe the state using selectors and draw themselved using dumb components
+// avoid having view logic & local component state in them, use "dumb" components (with presenters) instead
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import autoBind from 'react-autobind';
-import { connect } from 'react-redux';
+import {connect} from 'remx/react';
 import './TopicsScreen.css';
-import * as topicsActions from '../store/topics/actions';
-import * as topicsSelectors from '../store/topics/reducer';
+
 import ListView from '../components/ListView';
 import ListRow from '../components/ListRow';
+
+//import * as topicsActions from '../store/topics/actions';
+//import * as topicsSelectors from '../store/topics/reducer';
 
 class TopicsScreen extends Component {
 
@@ -31,9 +32,9 @@ class TopicsScreen extends Component {
         <ListView
           rowsIdArray={this.props.topicsUrlArray}
           rowsById={this.props.topicsByUrl}
-          renderRow={this.renderRow} />
+          renderRow={this.renderRow}/>
         {!this.props.canFinalizeSelection ? false :
-          <button className="NextScreen" onClick={this.onNextScreenClick} />
+         <button className="NextScreen" onClick={this.onNextScreenClick}/>
         }
       </div>
     );
@@ -70,14 +71,14 @@ class TopicsScreen extends Component {
 
 // which props do we want to inject, given the global store state?
 // always use selectors here and avoid accessing the state directly
-function mapStateToProps(state) {
-  const [topicsByUrl, topicsUrlArray] = topicsSelectors.getTopics(state);
-  return {
-    topicsByUrl,
-    topicsUrlArray,
-    selectedTopicsByUrl: topicsSelectors.getSelectedTopicsByUrl(state),
-    canFinalizeSelection: topicsSelectors.isTopicSelectionValid(state)
-  };
-}
+//function mapStateToProps(state) {
+//  const [topicsByUrl, topicsUrlArray] = topicsSelectors.getTopics(state);
+//  return {
+//    topicsByUrl,
+//    topicsUrlArray,
+//    selectedTopicsByUrl: topicsSelectors.getSelectedTopicsByUrl(state),
+//    canFinalizeSelection: topicsSelectors.isTopicSelectionValid(state)
+//  };
+//}
 
-export default connect(mapStateToProps)(TopicsScreen);
+export default connect(TopicsScreen);
