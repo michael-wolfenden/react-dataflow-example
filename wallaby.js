@@ -1,13 +1,6 @@
 /*eslint-disable*/
 'use strict';
-const babelOptions = {
-  "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ]
-};
-process.env.wallabyScriptDir = __dirname;
+const babelOptions = JSON.parse(require('fs').readFileSync(`${__dirname}/.babelrc`));
 module.exports = function(wallaby) {
   return {
     env: {
@@ -32,6 +25,7 @@ module.exports = function(wallaby) {
 
     setup: function(w) {
       require('babel-polyfill');
+      require('app-root-path').setPath(w.projectCacheDir);
     }
   };
 };
