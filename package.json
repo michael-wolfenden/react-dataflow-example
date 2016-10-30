@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.6.1"
+    "proxyquire": "1.7.4",
+    "redux-testkit": "^0.1.0",
+    "react-scripts": "0.6.1",
+    "jest": "^16.0.2",
+    "jest-cli": "^16.0.2"
   },
   "dependencies": {
     "lodash": "^4.16.4",

@@ -8,7 +8,7 @@ import _ from 'lodash';
 import * as types from './actionTypes';
 import Immutable from 'seamless-immutable';
 
-const initialState = Immutable({
+export const initialState = Immutable({
   topicsByUrl: undefined,
   selectedTopicUrls: [],
   selectionFinalized: false

@@ -9,7 +9,7 @@ import * as types from './actionTypes';
 import Immutable from 'seamless-immutable';
 import * as topicsSelectors from '../topics/reducer';
 
-const initialState = Immutable({
+export const initialState = Immutable({
   postsById: undefined,
   currentFilter: 'all',
   currentPostId: undefined
