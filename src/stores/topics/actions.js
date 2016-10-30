@@ -4,7 +4,7 @@ import * as topics from './store';
 export async function fetchTopics() {
   try {
     const subreddits = await redditService.getDefaultSubreddits();
-    topics.store.setAllTopics(subreddits);
+    topics.store.topicsLoaded(subreddits);
   } catch (e) {
     console.error(e.message);
   }

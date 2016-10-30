@@ -6,7 +6,7 @@ const state = remx.state({
 });
 
 export const store = remx.setters({
-  setAllTopics(topics) {
+  topicsLoaded(topics) {
     state.allTopics = topics;
     state.loading = false;
   }
